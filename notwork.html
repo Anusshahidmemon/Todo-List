@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content:center ;
+    height: 90vh;
+    background-image: linear-gradient(to bottom, #2a2f57, #453660, #5f3d66, #764569, #8c4e6b, #9f506b, #b15368, #c15763, #d45359, #e44f4a, #f24e38, #fc511d);
+}
+h1{
+    font-size: 80px;
+}
+input{
+width: 300px;
+height: 30px;
+border-radius: 6px;
+padding: 0px 5px;
+}
+button{
+    height: 35px;
+    border-radius: 6px;
+}
+#delete-all{
+    width: 390px;
+}
+li{
+    font-size: 25px;
+}
+#edit-btn{
+    width: 100px;
+}
+#edit{
+    margin: 0px 5px;
+    width: 75px;
+}
+#del{
+    width: 100px;
+}
+</style>
+
+
+
+</head>
+<body>
+    <div>
+    <h1>Todo list</h1>
+    <input type="text"id="todo" value="enter any number or value">
+    <button id="btn" onclick="work()">Add Todo</button>
+    <ul id="show"></ul>
+    <button id="delete-all">
+        Delete All
+    </button>
+</div>
+
+    <script>
+
+var input = document.getElementById('todo');
+var ul = document.getElementById('show');
+var button = document.getElementById('btn');
+input.addEventListener("keypress",function(event){
+    if(event.key == "Enter"){
+        event.preventDefault();
+      button.click();
+    }
+})
+
+
+function work(){
+    
+
+    ul.innerHTML +=`<li>${input.value} <button id="edit-btn" onclick=edit()>Edit</button> <button id="del" onclick=del()>Del</button></li>`
+    
+    
+    input.value =''
+    }
+
+function del(){
+    console.log(event.target);
+    console.dir(event.target.parentNode.remove());
+    }
+
+    
+
+function edit(){
+console.dir(event.target.parentNode.firstChild.textContent)
+console.dir(event.target.parentNode.innerHTML = `${event.target.parentNode.firstChild.textContent}<button onclick=edit()>Edit</button> <button onclick=del()>Del</button><input id="edit" type="text" value= "Edit value" ><button onclick="ok()"">Done</button>`);
+
+
+
+}
+
+// edits.addEventListener('input', (e)=>{
+//     console.log(e.value);
+// })
+
+let edits =document.getElementById('edit')
+function ok(){
+    let edits =document.getElementById('edit')
+  
+console.dir(edits.value)
+    // console.dir(event.target.parentNode.childNode)
+    console.dir(event.target.parentNode.innerHTML = `${edits.value}<button>Edited Value</button>`);
+
+}
+var delteAll = document.getElementById('delete-all')
+
+delteAll.addEventListener('click',function(){
+ 
+ul.innerHTML=''
+
+} )
+    </script>
+</body>
+</html>
